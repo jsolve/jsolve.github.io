@@ -1,0 +1,5 @@
+<div class="blog-menu">
+	{% for tags in page.tags %}
+		<a href="/tag/#{{ tags }}"><span class="label label-warning">#{{ tags }}</span></a>
+	{% endfor %}
+</div>

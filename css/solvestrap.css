@@ -8,60 +8,92 @@ body {
     padding-top: 40px;
     width: 100%;
 }
+
 a {
     color: #ef8f22;
 }
+
 a:hover,
 a:focus {
     color: #b7680d;
     text-decoration: underline;
 }
+
+h1 a {
+    color: #ef8f22;
+}
+
+h1 a:hover,
+h1 a:focus {
+    color: inherit;
+    text-decoration: none;
+}
+
 .help-inline {
     color: #b7680d;
 }
+
 .table .table {
     background-color: #fafafa;
 }
+
 .btn-link {
     color: #ef8f22;
 }
+
 .btn-link:focus {
     color: #b7680d;
 }
+
 .text-orange {
     color: #ef8f22;
 }
+
+.brand {
+    color: #ef8f22 !important;
+    font-size: 28px !important;
+}
+
+.brand .pl {
+    font-size: 22px !important;
+}
+
+.brand .solve {
+    color: #444 !important;
+}
+
 .jumbotron .container {
     height: inherit;
 }
+
 .jumbotron {
     background: #ef8f22 url('../img/top-bg.jpg');
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 20px;
-    padding-left: 20px;
     color: #f9f9f9;
+    width: 100%;
 }
-.jumbotron h1 {
-    font-size: 48px;
-    margin-top: 60px;
-    line-height: 1;
-}
+
 .jumbotron .btn {
     margin-left: 10px;
     font-size: 21px;
     padding: 14px 24px;
 }
-.with-logo{
+
+.with-logo {
     background: transparent url('../img/top-logo.jpg') top right no-repeat;
     background-size: contain;
 }
+
 .blog-menu {
     margin-top: 20px;
 }
+
 .developers {
     margin-top: 30px;
 }
+
 .post, .well {
     min-height: 20px;
     padding: 20px 40px;
@@ -73,17 +105,21 @@ a:focus {
     -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
 }
+
 .post h1, .well h1 {
     font-weight: normal;
     font-size: 20pt;
 }
-.post .lead, .well .lead  {
+
+.post .lead, .well .lead {
     margin-bottom: 15px;
 }
-.post ul.post-list, .well ul.post-list li{
+
+.post ul.post-list, .well ul.post-list li {
     margin: 0px -40px 20px;
     border-bottom: 1px solid #f2f1f1;
 }
+
 .post ul.post-list li, .well ul.post-list li {
     min-height: 40px;
     padding: 10px 20px;
@@ -92,10 +128,12 @@ a:focus {
     list-style: none;
     font-size: 12px;
 }
+
 .well ul.well-list {
     margin: 0px -40px 20px;
     border-bottom: 1px solid #f2f1f1;
 }
+
 .well ul.well-list li {
     min-height: 40px;
     padding: 10px 20px;
@@ -104,60 +142,75 @@ a:focus {
     list-style: none;
     font-size: 12px;
 }
+
 .post-footer {
     padding-top: 20px;
 }
+
 .post-footer p {
     color: #999999;
     text-align: right;
 }
+
 .post-footer p:hover,
 .post-footer p:focus {
     color: #808080;
 }
+
 .active-projects a {
     color: #353535;
 }
+
 .active-projects a:hover {
     color: #ef8f22;
 }
+
 .github-logo {
     background: transparent url('../img/github-logo.jpg') 90% 50% no-repeat;
 }
+
 .jsolve-logo {
     background: transparent url('../img/jsolve-logo.jpg') 90% 50% no-repeat;
 }
+
 .post ul.post-list .blog-link, .well ul.post-list .blog-link {
     min-height: 75px;
 }
-.post ul.post-list li h4, .well ul.post-list li h4  {
+
+.post ul.post-list li h4, .well ul.post-list li h4 {
     margin: 0;
 }
-.post ul.post-list li img, .well ul.post-list li img{
+
+.post ul.post-list li img, .well ul.post-list li img {
     margin-right: 20px;
 }
+
 .post ul.post-list li:hover,
-.post ul.post-list li:focus{
+.post ul.post-list li:focus {
     color: #ef8f22;
     cursor: pointer;
 }
+
 .post blockquote {
     border-color: #ddd;
     border-color: rgba(0, 0, 0, 0.15);
 }
+
 .post-large {
     padding: 24px;
     -webkit-border-radius: 6px;
     -moz-border-radius: 6px;
     border-radius: 6px;
 }
+
 .post-small {
     padding: 9px;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
 }
-.circle{
+
+.circle {
     font-size: 30px;
     color: #ef8f22;
     float: left;
@@ -170,25 +223,47 @@ a:focus {
     height: 37px;
     background: transparent url('../img/circled-list-circle.jpg') no-repeat;
 }
+
 .footer {
     margin-top: 20px;
     height: 190px;
     background-color: #353535;
 }
+
 .footer .space {
-    height: 50px;
+    height: 30px;
     background-color: #fafafa;
 }
-.footer .credit{
+
+.footer .credit {
     height: 53px;
     font-size: 12px;
     text-align: right;
     padding-top: 15px;
     background: #353535 url('../img/footer-logo.jpg') center center no-repeat;
 }
-.container,
-.navbar-static-top .container,
-.navbar-fixed-top .container,
-.navbar-fixed-bottom .container {
-    width: 940px;
+
+@media (min-width: 1200px) {
+    .container,
+    .navbar-static-top .container,
+    .navbar-fixed-top .container,
+    .navbar-fixed-bottom .container {
+        width: 1100px;
+    }
+}
+@media (min-width: 768px) and (max-width: 979px) {
+    .container,
+    .navbar-static-top .container,
+    .navbar-fixed-top .container,
+    .navbar-fixed-bottom .container {
+        width: 600px;
+    }
+}
+@media (max-width: 767px) {
+    .container,
+    .navbar-static-top .container,
+    .navbar-fixed-top .container,
+    .navbar-fixed-bottom .container {
+        width: 400px;
+    }
 }
