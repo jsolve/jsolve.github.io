@@ -1,22 +1,12 @@
 <hr>
 <div class="developers row-fluid">
+	{% for member in site.data.members %}
 	<div class="span1">
-		<img src="https://secure.gravatar.com/avatar/ecfb6c3616223805b43881e2f62e28ea?s=120" class="img-circle">
+		<img src="{{ member.avatar }}" class="img-circle">
 	</div>
 	<div class="span5">
-		<h3 class="text-orange">Łukasz Stypka</h3>
-
-		<p>Lorem ipsum dolor sit amet neque ante, tincidunt vel, hendrerit eget, suspendisse potenti. Cras
-			elementum.</p>
+		<h3><a href="https://github.com/{{ member.github }}">{{ member.name }}</a></h3>
+		<p>{{ member.description }}</p>
 	</div>
-
-	<div class="span1">
-		<img src="https://secure.gravatar.com/avatar/3c4678ebfc766024c3ebd01c9db323bb?s=120" class="img-circle">
-	</div>
-	<div class="span5">
-		<h3 class="text-orange">Tomasz Kuryłek</h3>
-
-		<p>Lorem ipsum dolor sit amet neque ante, tincidunt vel, hendrerit eget, aliquet ac, eros. Maecenas
-			mi vitae odio non eros.</p>
-	</div>
+	{% endfor %}
 </div>

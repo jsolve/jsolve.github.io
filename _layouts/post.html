@@ -1,15 +1,16 @@
 ---
 layout: default
 ---
+{% assign author = site.data.members | where: "name", page.author | first %}
 <div class="row-fluid">
 	<div class="span9">
 		<div class="post">
 			<h1>{{ page.title }}</h1>
-
 			<p>{{ content }}</p>
 
 			<div class="post-footer">
-				<p>{% if page.author %} Posted by <a href="/{{page.author}}"> {{ page.author }}</a>{% endif %} on {{ page.date | date: "%B %-d, %Y" }}</p>
+				<p>{% unless author.nil? %} Posted by <a href="https://github.com/{{ author.github }}"> {{ author.name }}</a>
+					{% endunless %} on {{page.date | date: "%B %-d, %Y" }}</p>
 			</div>
 		</div>
 	</div>
