@@ -1,11 +1,22 @@
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+@media(max-width: 979px) {
+    body {
+        padding-top: 0;
+    }
+}
+
 body {
-    margin: 0;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 14px;
     line-height: 20px;
+    padding-top: 40px;
+    margin: 0 0 160px;
     color: #353535;
     background-color: #fafafa;
-    padding-top: 40px;
 }
 
 a {
@@ -226,9 +237,11 @@ h1 a:focus {
 }
 
 .footer {
-    margin-top: 20px;
     height: 190px;
     background-color: #353535;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 }
 
 .footer .space {
@@ -242,10 +255,4 @@ h1 a:focus {
     text-align: right;
     padding-top: 15px;
     background: #353535 url('../img/footer-logo.jpg') center center no-repeat;
-}
-
-@media(max-width: 979px) {
-    body {
-        padding-top: 0;
-    }
 }
