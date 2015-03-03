@@ -9,7 +9,7 @@ layout: default
 			<p>{{ content }}</p>
 
 			<div class="post-footer">
-				<p>{% unless author.nil? %} Posted by <a href="https://github.com/{{ author.github }}"> {{ author.name }}</a>
+				<p>Posted {% unless author.nil? %} by <a href="https://github.com/{{ author.github }}"> {{ author.name }}</a>
 					{% endunless %} on {{page.date | date: "%B %-d, %Y" }}</p>
 			</div>
 		</div>
