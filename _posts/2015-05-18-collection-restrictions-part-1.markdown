@@ -55,7 +55,7 @@ Many ``Restriction`` classes have been prepared in order to allow a smooth searc
 
 	
 <br />
-<br>
+<br />
 
 ### A bit of practice
 Assume that we have ``Person`` object with the following properties
