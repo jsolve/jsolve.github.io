@@ -3,7 +3,7 @@ html {
     min-height: 100%;
 }
 
-@media(max-width: 979px) {
+@media (max-width: 979px) {
     body {
         padding-top: 0;
     }
@@ -107,6 +107,7 @@ h1 a:focus {
 
 .developers {
     margin-top: 30px;
+    height: 180px;
 }
 
 .post, .well {
