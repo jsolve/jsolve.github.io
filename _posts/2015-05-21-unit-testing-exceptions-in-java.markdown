@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Unit testing exceptions in Java"
-date:   2015-05-18 19:59:12
+date:   2015-05-21 09:20
 categories: java
 tags: java, unit testing, sweetener, exceptions, ExceptionCatcher
 author: Tomasz Kuryłek
