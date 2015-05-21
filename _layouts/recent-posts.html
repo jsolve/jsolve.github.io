@@ -1,0 +1,12 @@
+{
+	"posts":
+	[
+		{% for post in site.posts limit: 4%}
+		{
+			"title" : "{{ post.title }}",
+			"image" : {% if post.image %} "{{ site.url}}{{ post.image }}" {% else %} "{{ site.url}}/img/64.png" {% endif %},
+			"url" : "{{ site.url}}{{ post.url }}"
+		}{% if forloop.index != site.posts.size %},{% endif %}
+		{% endfor %}
+	]
+}
