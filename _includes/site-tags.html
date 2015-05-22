@@ -1,0 +1,14 @@
+<p class="lead">
+	Tags:
+</p>
+
+{% capture tags %}
+  {% for tag in site.tags %}
+    {{ tag[0] }}
+  {% endfor %}
+{% endcapture %}
+{% assign sortedtags = tags | split:' ' | sort %}
+
+{% for tag in sortedtags %}
+		<a href="/tag/#{{ tag }}"><span class="label label-warning">#{{ tag }}</span></a>
+{% endfor %}

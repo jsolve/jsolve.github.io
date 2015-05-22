@@ -1,0 +1,8 @@
+<div class="blog-menu">
+	<p class="lead">Recent posts</p>
+	<ul style="list-style: decimal-leading-zero;">
+		{% for post in site.posts limit: 9 %}
+			<li><a href="{{ post.url }}">{{ post.title }}</a></li>
+		{% endfor %}
+	</ul>
+</div>
