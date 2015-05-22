@@ -12,11 +12,11 @@ Let's assume that we want to create restriction which checks whether string star
 {% highlight java %}
 public class StartsWithRestriction extends CustomRestriction {
 
-    private String startsWith;
+    private String prefix;
 
-    public StartsWithRestriction(String fieldName, String startsWith) {
+    public StartsWithRestriction(String fieldName, String prefix) {
         super(fieldName);
-        this.startsWith = startsWith;
+        this.prefix = prefix;
     }
 
     @Override
@@ -27,11 +27,12 @@ public class StartsWithRestriction extends CustomRestriction {
                     + fieldValue.getClass().getCanonicalName());
         }
 
-        return ((String) fieldValue).startsWith(startsWith);
+        return ((String) fieldValue).startsWith(prefix);
     }
 
 }
 {% endhighlight %}
+As you can see, `StartsWithRestriction` extends `CustomRestriction`. CustomRestriction expects `fieldName` as a constructor parameter. As another constructor parameters you can pass values that will be necessary in your restrictions. In our example, this is the prefix. CustomRestriction requires implementation of one method: `satisfies(Object fieldValue)`. As the parameter of this method you can expect fieldValue which is indicate by first parameter in the constructor (String fieldName). In body of `public boolean satisfies(Object fieldValue)` method you can check whether value has correct format, correct type. As result of this method you should return one simple boolean information: whether the restriction is satisfied. In our example we check whether fieldValue starts with prefix.
 
 To use such restriction just invoke `add` method on `Criteria` object. 
 
