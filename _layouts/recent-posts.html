@@ -7,7 +7,7 @@
 			"description" : "{{ post.excerpt | strip_html | truncatewords: 30, ' ...'  }}",
 			"image" : {% if post.image %} "{{ site.url}}{{ post.image }}" {% else %} "{{ site.url}}/img/64.jpg" {% endif %},
 			"url" : "{{ site.url}}{{ post.url }}"
-		}{% if forloop.index != site.posts.size %},{% endif %}
+		}{% if forloop.index != site.posts.size && forloop.index < 4  %},{% endif %}
 		{% endfor %}
 	]
 }
