@@ -7,8 +7,6 @@ tags: java, sweetener, oven, type-converter, maven
 author: Łukasz Stypka
 ---
 From now `Sweetener`, `Oven` and `Type-converter` are in Maven Cetral. Just add the below dependency to your pom file.
-<br />
-<br />
 
 #### Sweetener
 {% highlight java %}
