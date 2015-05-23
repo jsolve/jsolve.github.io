@@ -10,7 +10,7 @@ Jsolve - Projects in Maven Central! From now Sweetener, Oven and Type-converter 
 Current versions of our libraries are: sweetener: 1.0.0, oven: 1.0.0, type-converter: 1.0.0. In order to use it in maven project just add the below dependency to your pom file.
 
 #### Sweetener
-{% highlight java %}
+{% highlight xml %}
 <dependency>
     <groupId>pl.jsolve</groupId>
     <artifactId>sweetener</artifactId>
@@ -20,7 +20,7 @@ Current versions of our libraries are: sweetener: 1.0.0, oven: 1.0.0, type-conve
 <br />
 
 #### Oven
-{% highlight java %}
+{% highlight xml %}
 <dependency>
     <groupId>pl.jsolve</groupId>
     <artifactId>oven</artifactId>
@@ -30,7 +30,7 @@ Current versions of our libraries are: sweetener: 1.0.0, oven: 1.0.0, type-conve
 <br />
 
 #### Type-Converter
-{% highlight java %}
+{% highlight xml %}
 <dependency>
     <groupId>pl.jsolve</groupId>
     <artifactId>typeconverter</artifactId>
@@ -44,7 +44,7 @@ Current versions of our libraries are: sweetener: 1.0.0, oven: 1.0.0, type-conve
 ## Snapshot repository
 
 In order to use snapshot repository add the following repository to your repositories section:
-{% highlight java %}
+{% highlight xml %}
 <repositories>
     <repository>
         <id>sonatype-snapshots</id>
@@ -56,7 +56,7 @@ In order to use snapshot repository add the following repository to your reposit
 and add snapshot dependency:
 
 #### Sweetener
-{% highlight java %}
+{% highlight xml %}
 <dependency>
     <groupId>pl.jsolve</groupId>
     <artifactId>sweetener</artifactId>
@@ -66,7 +66,7 @@ and add snapshot dependency:
 <br />
 
 #### Oven
-{% highlight java %}
+{% highlight xml %}
 <dependency>
     <groupId>pl.jsolve</groupId>
     <artifactId>oven</artifactId>
@@ -76,7 +76,7 @@ and add snapshot dependency:
 <br />
 
 #### Type-Converter
-{% highlight java %}
+{% highlight xml %}
 <dependency>
     <groupId>pl.jsolve</groupId>
     <artifactId>typeconverter</artifactId>
