@@ -6,7 +6,8 @@ categories: java
 tags: java, sweetener, oven, type-converter, maven
 author: Łukasz Stypka
 ---
-Jsolve - Projects in Maven Central! From now Sweetener, Oven and Type-converter are in Maven Cetral. Just add the below dependency to your pom file.
+Jsolve - Projects in Maven Central! From now Sweetener, Oven and Type-converter are in Maven Cetral.  
+Current versions of our libraries are: sweetener: 1.0.0, oven: 1.0.0, type-converter: 1.0.0. In order to use it in maven project just add the below dependency to your pom file.
 
 #### Sweetener
 {% highlight java %}
