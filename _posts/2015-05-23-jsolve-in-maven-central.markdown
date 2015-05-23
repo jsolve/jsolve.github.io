@@ -24,7 +24,7 @@ Current versions of our libraries are: sweetener: 1.0.0, oven: 1.0.0, type-conve
 <dependency>
     <groupId>pl.jsolve</groupId>
     <artifactId>oven</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 </dependency>
 {% endhighlight %}
 <br />
@@ -70,7 +70,7 @@ and add snapshot dependency:
 <dependency>
     <groupId>pl.jsolve</groupId>
     <artifactId>oven</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.2-SNAPSHOT</version>
 </dependency>
 {% endhighlight %}
 <br />
