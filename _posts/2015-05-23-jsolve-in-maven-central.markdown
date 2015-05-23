@@ -54,6 +54,7 @@ In order to use snapshot repository add the following repository to your reposit
 {% endhighlight %}
 
 and add snapshot dependency:
+
 #### Sweetener
 {% highlight java %}
 <dependency>
