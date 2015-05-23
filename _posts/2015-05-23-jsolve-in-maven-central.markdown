@@ -38,6 +38,11 @@ Current versions of our libraries are: sweetener: 1.0.0, oven: 1.0.0, type-conve
 </dependency>
 {% endhighlight %}
 
+<br />
+<br />
+
+## Snapshot repository
+
 In order to use snapshot repository add the following repository to your repositories section:
 {% highlight java %}
 <repositories>
