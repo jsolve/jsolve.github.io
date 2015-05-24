@@ -6,7 +6,7 @@ categories: java
 tags: java, sweetener, Strings, Escapes
 author: Łukasz Stypka
 ---
-Everyone, sooner or later, must face with escaping characters problem. For this reason we have created a special class `Escapes`, which goal is solve this problem. `Escapes` class contains five special methods to escape special characters for: 
+Everyone, sooner or later, must face with escaping characters problem. For this reason we have created a special class `Escapes` as part of `sweetener` project, which goal is solve this problem. `Escapes` class contains five special methods to escape special characters for: 
 
 * regular expression - `public static String escapeRegexp(String value)`
 * html - `public static String escapeHtml(String value)`
