@@ -3,7 +3,7 @@ layout: post
 title:  "Sweetener - Collection Restrictions - Part I"
 date:   2015-05-18 19:59:12
 categories: java
-tags: java, sweetener, restrictions, collection, criteria
+tags: java, sweetener, restrictions, collections, criteria
 author: Łukasz Stypka
 ---
 Search through the collection has always been a problem for developers and simple search enforced on the programmer writing many lines of code (Countless foreach, if-else constructions). Fortunately, class `Collections` solves this problem. The integral part of this class is `Criteria` and `Restriction` mechanism, which allows for complex query conditions. The restrictions can be joined in chain by *add* method. Example criteria is shown below:
