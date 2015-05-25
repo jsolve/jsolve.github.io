@@ -9,10 +9,9 @@ author: Łukasz Stypka
 
 Class Objects, being the first class of sweetener project, provides set of  methods to facilitate work with Object known from core of Java language. Among the most popular methods are: deep copy, comparison two object (possible also null object) and null-safe methods.
 
-##  Deep Copy
+####  Deep Copy
 The `public static <T> T deepCopy(T o)` method allows user to perform deep copy. A deep copy means that all objects are created again and thanks to this, two objects do not share the same object by copied reference.
 
-#### Examples
 
 **Example POJO classes**
 
