@@ -1,0 +1,144 @@
+---
+layout: post
+title:  "Sweetener - Objects"
+date:   2015-05-25 17:21:04
+categories: java
+tags: java, sweetener, objects 
+author: Łukasz Stypka
+---
+
+Class Objects, being the first class of sweetener project, provides set of  methods to facilitate work with Object known from core of Java language. Among the most popular methods are: deep copy, comparison two object (possible also null object) and null-safe methods.
+
+##  Deep Copy
+The `public static <T> T deepCopy(T o)` method allows user to perform deep copy. A deep copy means that all objects are created again and thanks to this, two objects do not share the same object by copied reference.
+
+#### Examples
+
+**Example POJO classes**
+
+{% highlight java %}
+public class Person {
+
+    private String name;
+    private String lastName;
+    private int age;
+    private Company company;
+    private List<String> categoriesOfDrivingLicense = new ArrayList<String>();
+    // setters and getters
+}
+
+public class Company {
+
+    private String name;
+    private Address address;
+
+    // setters and getters
+}
+
+public class Address {
+
+    private String street;
+    private String city;
+
+    // setters and getters
+}
+{% endhighlight %}
+
+{% highlight java %}
+Person person = new Person("Peter", "Hunt", 41, new Company("EA", new Address("street1", "city1")), prepareListOfCategories("B", "D"));
+Person copiedPerson = Objects.deepCopy(person);
+{% endhighlight %}
+
+
+## Equals
+Well-known issue is comparing two object while the first of them is null. It always ends with  NullPointerException. From now to compare two objects, you can use the following methods:
+
+{% highlight java %}
+public static boolean equals(Object o1, Object o2); 
+public static boolean equals(Object o1, Object o2, String path);
+public static boolean equals(Object o1, String firstPath, Object o2, String secondPath);
+{% endhighlight %}
+
+The first one allows to compare two object, where one of them or even two may be null. In case when both objects are null, equals return true, but when only one of them is null, equals always returns false. In other cases the equals method is invoked on the object passed as the first parameter.
+The second type of the equals method allows to compare nested objects. The equals method with four parameters is very similar to second one, but the path to the first and second object may be different.
+<br />
+Suppose that in the code there are two Person objects:
+
+{% highlight java %}
+Person firstPerson = new Person("John", "Sky", 31, new Company("Jsolve", new Address("street1", "city1")), null);
+Person secondPerson = new Person("Marry", "Duke", 45, new Company("Oracle", new Address("street1", "Jsolve")), null);
+{% endhighlight %}
+
+Probably not once you seen code like this:
+
+{% highlight java %}
+if(firstPerson.getCompany().getAddress().getStreet()
+	.equals(secondPerson.getCompany().getAddress().getStreet())) {
+	  // do something  
+}
+{% endhighlight %}
+
+This code has one big defect: is very sensitive to null Object. If for example firstPerson.getCompany() returns null, you will receive NullPointerException.
+To avoid such unpleasant surprises you should use:
+
+{% highlight java %}
+if(Objects.equals(firstPerson, secondPerson, "company.address.street")) {
+	  // do something  
+}	
+{% endhighlight %}
+
+This method never throws NullPointerException, even in the case when address from above example is null. You can compare two objects with different paths as well.
+
+{% highlight java %}
+if(Objects.equals(firstPerson, "company.name", secondPerson, "company.address.city")) {
+	  // do something  
+} 
+{% endhighlight %}
+
+## NullSafe
+Return default value of given type when value is null.
+
+{% highlight java %}
+Objects.nullSafeToString(nullableObject); // returns empty string when nullableObject is null or nullableObject.toString()
+Objects.nullSafeString(nullableString); // returns empty string when nullableObject is null
+Objects.nullSafeInteger(nullableInteger); // returns 0 when nullableInteger is null
+Objects.nullSafeLong(nullableLong); // returns 0L when nullableLong is null
+Objects.nullSafeDouble(nullableDouble); // returns 0.0 when nullableDouble is null
+Objects.nullSafeFloat(nullableFloat); // returns 0.0f when nullableFloat is null
+Objects.nullSafe(T nullableObject, OnNullStrategy<T> onNullObjectStrategy); // returns nullableObject or object defined in onNullObjectStrategy when nullableObject is null
+{% endhighlight %}
+
+### Simple example
+We want to avoid such an ugly code:
+
+{% highlight java %}
+if(name == null) {
+   name = "";
+}
+{% endhighlight %}
+
+The solution to this situation is to use:
+
+{% highlight java %}
+name = Objects.nullSafeToString(name);
+// returns "" when name is null
+{% endhighlight %}
+
+
+### Custom nullable object
+When your nullable object is not listed above you can use `OnNullStrategy` to create custom behavior. Take a look at the following code:
+
+{% highlight java %}
+Hero hero = Objects.nullSafe(hero, new OnNullStrategy<Hero>() {
+   @Override
+   public Hero onNull() {
+      Hero hero = new Hero();
+      hero.clearSuperPowers();
+      hero.setModificationTime(new Date());
+      // (...)
+      return hero;
+   }
+});
+{% endhighlight %}
+
+When `hero` object is not null - it will remain the same, when it's null - it will be created and initialized.
