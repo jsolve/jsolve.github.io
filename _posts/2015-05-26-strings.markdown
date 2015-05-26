@@ -6,8 +6,8 @@ categories: java
 tags: java sweetener strings 
 author: Łukasz Stypka
 ---
+There is no person who would not know the `String` class. To facilitate the work of this class, has been created 'Strings'. There is no person who would not know the `String` class. To facilitate the work of this class, has been created 'Strings'.
 
-There is no person who would not know the `String` class. To facilitate the work of this class, has been created 'Strings'.
 
 #### join
 There are two methods responsible for created String from given collection or array of object:
