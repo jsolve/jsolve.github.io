@@ -6,8 +6,7 @@ categories: java
 tags: java sweetener strings 
 author: Łukasz Stypka
 ---
-There is no person who would not know the `String` class. To facilitate the work of this class, has been created 'Strings'. There is no person who would not know the `String` class. To facilitate the work of this class, has been created 'Strings'.
-
+There is no person who would not know the `String` class. To facilitate the work of this class, has been created 'Strings'. We have created such methods as : join, numberOfOccurrences, removeAllOccurrences, indexesOf, groups, random, pad, capitalize, capitalizeAllWords, isWhitespace, containsOnly, isEmpty, singleLine, removeNewLines, reverse, repeat, isAlpha, isAlphaWithWhitespace, isNumeric, isAlphanumeric, isAlphanumericWithWhitespace
 
 #### join
 There are two methods responsible for created String from given collection or array of object:
