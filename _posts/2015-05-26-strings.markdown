@@ -1,0 +1,222 @@
+---
+layout: post
+title:  "Sweetener - Strings"
+date:   2015-05-26 16:47:54
+categories: java
+tags: java sweetener strings 
+author: Łukasz Stypka
+---
+
+There is no person who would not know the `String` class. To facilitate the work of this class, has been created 'Strings'.
+
+#### join
+There are two methods responsible for created String from given collection or array of object:
+
+{% highlight java %}
+String join(String separator, Collection<?> collection)
+String join(String separator, Object... args)
+{% endhighlight %}
+
+For each object from collection is invoked toString() method. If given object is null, to resulting string is added the 'null' value.
+
+**Examples**
+{% highlight java %}
+List<String> strings = new ArrayList<String>();
+strings.add("A");
+strings.add("B");
+strings.add("C");
+strings.add("D");
+
+String result = Strings.join(", ", strings);
+// result: "A, B, C, D"
+{% endhighlight %}
+
+{% highlight java %}
+class Person {
+ ...
+ 
+ @Override
+ public String toString() {
+	return "Person [name=" + name + ", lastName=" + lastName + "]";
+ }	
+}
+
+List<Person> people = new ArrayList<Person>();
+people.add(new Person("John", "Deep", 19, null, null));
+people.add(null);
+people.add(new Person("Marry", "Duke", 21, null, null));
+
+String result = Strings.join(", ", people);
+// result: "Person [name=John, lastName=Deep], null, Person [name=Marry, lastName=Duke]"
+{% endhighlight %}
+
+
+#### Number of occurrences
+
+To check the number of occurrences of a sequence in the String you can use one of the following methods:
+
+{% highlight java %}
+public static int numberOfOccurrences(String sourceObject, String sequence);
+public static int numberOfOccurrences(String sourceObject, String sequence, boolean ignoreRegexp);
+public static int numberOfOccurrences(String sourceObject, Character sequence);
+public static int numberOfOccurrences(String sourceObject, Character sequence, boolean ignoreRegexp);
+{% endhighlight %}
+
+As you can see, each method has its own version of ignoring the regular expression. Sometimes you want to search of dots, but what happens when you  directly pass the "." as parameter ? Will be returned all the characters, because dot represents any char. Fortunately, you can easily fix this now. Look at the following example:
+
+{% highlight java %}
+String sourceString = "ab.ac.ad.";
+int numberOfCccurrences = Strings.numberOfOccurrences(sourceString, ".");  // numberOfCccurrences  = 9
+numberOfCccurrences = Strings.numberOfOccurrences(sourceString, ".", true);  // numberOfCccurrences  = 3
+{% endhighlight %}
+
+#### Remove all occurrences
+This method is very similar to the previous method and also has four variants. 
+
+{% highlight java %}
+public static String removeAllOccurrences(String sourceObject, String sequence);
+public static String removeAllOccurrences(String sourceObject, String sequence, boolean ignoreRegexp);
+public static String removeAllOccurrences(String sourceObject, Character sequence);
+public static String removeAllOccurrences(String sourceObject, Character sequence, boolean ignoreRegexp);
+{% endhighlight %}
+
+{% highlight java %}
+String sourceString = "ab.ac.ad.";
+String emptyString = Strings.removeAllOccurrences(sourceString, ".");  // ""
+String stringWithoutDots = Strings.removeAllOccurrences(sourceString, ".", true); // "abacad"
+{% endhighlight %}
+
+#### Indexes of
+If you want to get all of the indexes given occurrences, this method is right for you.
+
+{% highlight java %}
+public static List<Integer> indexesOf(String sourceObject, String sequence, boolean ignoreRegexp);
+public static List<Integer> indexesOf(String sourceObject, String sequence);
+public static List<Integer> indexesOf(String sourceObject, Character c, boolean ignoreRegexp);
+public static List<Integer> indexesOf(String sourceObject, Character c);
+{% endhighlight %}
+
+{% highlight java %}
+String sourceString = "ab.ac.ad.";
+List<Integer> indexesOf = Strings.indexesOf(sourceString, ".");  // [0, 1, 2, 3, 4, 5, 6, 7, 8]
+List<Integer> indexesOf = Strings.indexesOf(sourceString, ".", true);  // [2, 5, 8]	
+{% endhighlight %}
+
+#### Groups
+This method is very similar to the above, but there's returned a more detailed information.
+
+{% highlight java %}
+String sourceString = "ab.ac.ad.";
+List<FoundGroup> groups = Strings.groups(sourceString, ".");
+
+// [[startIndex=0, endIndex=1, content=a], [startIndex=1, endIndex=2, content=b], [startIndex=2, endIndex=3, content=.], [startIndex=3, endIndex=4, content=a], [startIndex=4, endIndex=5, content=c], [startIndex=5, endIndex=6, content=.], [startIndex=6, endIndex=7, content=a], [startIndex=7, endIndex=8, content=d], [startIndex=8, endIndex=9, content=.]]
+
+List<FoundGroup> groups = Strings.groups(sourceString, ".", true);
+
+// [[startIndex=2, endIndex=3, content=.], [startIndex=5, endIndex=6, content=.], [startIndex=8, endIndex=9, content=.]]
+
+{% endhighlight %}
+
+#### Random
+Have you ever tried to look for a method that would generate a random string for you?  That's right, there is no such method! Fortunately sweetener provides two such methods:
+
+{% highlight java %}
+public static String random(int length);
+public static String random(List<Character> symbols, int length);
+{% endhighlight %}
+
+The first one generates a random string of: a-z A-Z 0-9
+Whereas the second takes a list of characters used in generation.
+
+{% highlight java %}
+List<Character> symbols = Collections.newArrayList('@', '!', '*', '^', '%', '(', ')', ',', '.', '?');
+String random = Strings.random(symbols, 7);  // ^)?!)%@
+
+String random = Strings.random(7); // unDys83
+{% endhighlight %}
+
+#### Pad
+
+{% highlight java %}
+public static String pad(String sourceObject, int length);
+public static String pad(String sourceObject, int length, PaddingType paddingType); 
+public static String pad(String sourceObject, Character c, int length);
+public static String pad(String sourceObject, Character c, int length, PaddingType paddingType);
+public static String pad(String sourceObject, String content, int length);
+public static String pad(String sourceObject, String content, int length, PaddingType paddingType);
+{% endhighlight %}
+
+The default fill character (character `c` or string `content`) is a space.
+PaddingType property determines whether the padding should be on the left, right or central - the default is right.
+
+{% highlight java %}
+String result = Strings.pad("abc", "*-", 7, PaddingType.CENTRE); // "-*abc*-"
+String result = Strings.pad("abc", "*-", 7, PaddingType.LEFT); // "-*-*abc"
+String result = Strings.pad("abc", "*-", 7, PaddingType.RIGHT); // "abc*-*-"
+{% endhighlight %}
+
+#### Capitalize
+
+{% highlight java %}
+public static String capitalize(String value);
+public static String capitalizeAllWords(String value);
+{% endhighlight %}
+
+#### Is whitespace
+
+{% highlight java %}
+public static boolean isWhitespace(char c);
+public static boolean isWhitespace(String c);
+{% endhighlight %}
+
+#### Contains only
+This method returns an indication whether the specified string consists exclusively of characters passed as the second argument.
+
+{% highlight java %}
+public static boolean containsOnly(String value, List<Character> listOfCharacters);
+{% endhighlight %}
+
+#### Is empty
+This method returns true if value is null, empty or consists of only whitespaces.
+
+{% highlight java %}
+public static boolean isEmpty(String value);
+{% endhighlight %}
+
+#### Single line
+This method removes all occurrences of characters: \n \r. As a result returned is a single line.
+
+{% highlight java %}
+public static String singleLine(String value);
+{% endhighlight %}
+
+#### Remove new lines
+This method removes the newline at the end of the String.
+
+{% highlight java %}
+public static String removeNewLines(String value);
+{% endhighlight %}
+
+#### Reverse
+This method reverses the string.
+
+{% highlight java %}
+public static String reverse(String value);
+{% endhighlight %}
+
+#### Repeat
+This method repeat given sequence specified number of times.
+
+{% highlight java %}
+public static String repeat(String value, int numberOfRepeats);
+{% endhighlight %}
+
+#### Is alpha, alphaWithWhitespace, numeric, alphanumeric, alphanumericWithWhitespace
+
+{% highlight java %}
+public static boolean isAlpha(String value);
+public static boolean isAlphaWithWhitespace(String value);
+public static boolean isNumeric(String value);
+public static boolean isAlphanumeric(String value);
+public static boolean isAlphanumericWithWhitespace(String value);
+{% endhighlight %}
