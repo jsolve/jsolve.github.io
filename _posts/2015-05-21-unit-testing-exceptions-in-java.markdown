@@ -49,7 +49,7 @@ There are several problems with this test. We have a rule of thumb - code inside
 You need to initialize caughtException with null (which is easy to forget), perform the exceptional operation, catch and assign thrown exception. Because of that it's not very 
 clear what we are doing here.
    
-That's why we came up with `ExceptionCatcher`. It does the same logic, but in a lot cleaner way. Take a look at the test:
+That's why we came up with `ExceptionCatcher` (part of the [sweetener project](https://github.com/jsolve/sweetener). It does the same logic, but in a lot cleaner way. Take a look at the test:
    
 {% highlight java %}
 @Test
