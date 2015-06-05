@@ -3,7 +3,7 @@ layout: post
 title:  "Jsolve - Projects in Maven Central"
 date:   2015-05-23 09:16:03
 categories: java
-tags: java, sweetener, oven, type-converter, maven
+tags: java sweetener oven type-converter maven
 author: Łukasz Stypka
 ---
 Jsolve - Projects in Maven Central! From now Sweetener, Oven and Type-converter are in Maven Cetral.  

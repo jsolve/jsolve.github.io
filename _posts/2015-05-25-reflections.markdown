@@ -3,7 +3,7 @@ layout: post
 title:  "Sweetener - Reflections"
 date:   2015-05-25 19:06:09
 categories: java
-tags: java, sweetener, reflections 
+tags: java sweetener reflections 
 author: Łukasz Stypka
 ---
 

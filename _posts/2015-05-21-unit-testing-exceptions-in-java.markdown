@@ -3,7 +3,7 @@ layout: post
 title:  "Unit testing exceptions in Java"
 date:   2015-05-21 09:20
 categories: java
-tags: java, unit testing, sweetener, exceptions, ExceptionCatcher
+tags: java unit-testing sweetener exceptions ExceptionCatcher
 author: Tomasz Kuryłek
 ---
 Testing exceptions is crucial when you are into defensive programming. Ensuring your code behaves correctly under unforeseen circumstances. Though JUnit's `@Test(expected = ...)` seems to 

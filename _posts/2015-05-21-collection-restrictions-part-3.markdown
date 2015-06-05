@@ -3,7 +3,7 @@ layout: post
 title:  "Sweetener - Collection Restrictions - Part III - Custom restrictions"
 date:   2015-05-21 19:09:53
 categories: java
-tags: java, sweetener, restrictions, collections, criteria
+tags: java sweetener restrictions collections criteria
 author: Łukasz Stypka
 ---
 Sweetener contains many pre-defined restrictions, but we cannot predict all use-cases of our mechanism. For this reason we have prepared `CustomRestriction`. If none of the restrictions prepared by us is what you are looking for, you can create your own restriction. Preparing `CustomRestriction` is simple and intuitive. To create your own `Restriction` you need to create new class which extends `CustomRestriction` class. 

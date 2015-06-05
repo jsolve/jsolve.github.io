@@ -3,7 +3,7 @@ layout: post
 title:  "Sweetener - Collections - New methods"
 date:   2015-05-24 18:03:13
 categories: java
-tags: java, sweetener, collections, 
+tags: java sweetener collections 
 author: Łukasz Stypka
 ---
 Today, I would like to introduce you new methods of `pl.jsolve.sweetener.collection.Collections` class.  Classes included in the package 'collection' provides a set of methods to facilitate the work of well-known classes from the core Java: List, Set, Map, array as well. 

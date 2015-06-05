@@ -3,7 +3,7 @@ layout: post
 title:  "Type conversion made easy"
 date:   2015-06-05 18:02
 categories: java
-tags: java, type-converter
+tags: java type-converter
 author: Tomasz Kuryłek
 ---
 In strongly typed languages, like Java, conversion between multiple types can be really painful. How many times did you forget how to convert `Date` to `Calendar`? How about conversion between collections? The operation is often performed in multiple lines of code and in no time you find yourself focusing on the type juggling instead of problem solving.
