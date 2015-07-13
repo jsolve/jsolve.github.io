@@ -1,0 +1,174 @@
+---
+layout: post
+title:  "Templ4docx - Easy way to fill docx templates"
+date:   2015-07-13 18:17
+categories: java
+tags: java templ4docx docx apache-poi
+author: Łukasz Stypka
+---
+<style>
+table{
+    border-collapse: collapse;
+    border-spacing: 0;
+    border:2px solid #000000;
+	text-align: center;
+}
+
+td{
+    border:1px solid #000000;
+	min-width: 200px;
+}
+</style>
+A few days ago, I had to prepare Proof-of-Concept connected with filling templates prepared in docx. I took into account two libraries: org.docx4j and apache-poi. After a short play with them, the second library appears to be more suitable in my case. In order to compare these two libraries I've prepared two classes that perform the same operations: 
+
++ reading docx file
++ finding all variables in docx file
++ replacing (filling) variables in the template
++ saving filled template
+
+| | Docx4j      | Apache-poi           |
+|Operation |       |           |
+|:-------------:|:-------------:|:-------------:|
+|Reading|5599 ms |921,3 ms|
+|Finding variables |205,8 ms|34,51 ms|
+|Filling template |65,46 ms|129,6 ms|
+|Saving template |99,38 ms|267,7 ms|
+
+### Test docx template
+![Docx template]({{ site.url }}/assets/2015-07-13/template.png)
+
+
+### Doc4j test classes
+{% highlight java %}
+Stopwatch stopwatch = Stopwatch.createStarted();
+WordprocessingMLPackage wordMLPackage = WordprocessingMLPackage.load(new java.io.File(path));
+MainDocumentPart documentPart = wordMLPackage.getMainDocumentPart();
+stopwatch.stop();
+System.out.println("READ FILE : " + stopwatch);
+
+stopwatch = Stopwatch.createStarted();
+List<String> tagValues = getTagValues(documentPart.getXML());
+stopwatch.stop();
+System.out.println("FIND VARIABLES : " + stopwatch);
+
+stopwatch = Stopwatch.createStarted();
+documentPart.variableReplace(mappings);
+stopwatch.stop();
+System.out.println("REPLACE VARIABLES : " + stopwatch);
+
+stopwatch = Stopwatch.createStarted();
+wordMLPackage.save(new java.io.File(outputPath));
+stopwatch.stop();
+System.out.println("SAVE DOCUMENT : " + stopwatch);
+
+...
+
+private static List<String> getTagValues(final String str) {
+	final List<String> tagValues = new ArrayList<String>();
+	Pattern pattern = Pattern.compile("\\$\\{(.*?)\\}");
+	Matcher matcher = pattern.matcher(str);
+	while (matcher.find()) {
+		tagValues.add(matcher.group());
+	}
+
+	return tagValues;
+}
+{% endhighlight %}
+
+### Apache-POI test classes
+{% highlight java %}
+Stopwatch stopwatch = Stopwatch.createStarted();
+FileInputStream fis = new FileInputStream(path);
+XWPFDocument xdoc = new XWPFDocument(OPCPackage.open(fis));
+stopwatch.stop();
+System.out.println("READ FILE : " + stopwatch);
+
+XWPFWordExtractor extractor = new XWPFWordExtractor(xdoc);
+
+stopwatch = Stopwatch.createStarted();
+List<String> tags = getTagValues(extractor.getText());
+stopwatch.stop();
+System.out.println("FIND VARIABLES: " + stopwatch);
+
+stopwatch = Stopwatch.createStarted();
+replace(xdoc, mappings);
+stopwatch.stop();
+System.out.println("REPLACE VARIABLES: " + stopwatch);
+
+stopwatch = Stopwatch.createStarted();
+xdoc.write(new FileOutputStream(outputPath));
+stopwatch.stop();
+System.out.println("SAVE DOCUMENT: " + stopwatch);
+extractor.close();
+
+...
+
+private List<String> getTagValues(final String str) {
+	final List<String> tagValues = new ArrayList<String>();
+	Pattern pattern = Pattern.compile("\\$\\{(.*?)\\}");
+	Matcher matcher = pattern.matcher(str);
+	while (matcher.find()) {
+		tagValues.add(matcher.group());
+	}
+
+	return tagValues;
+}
+
+{% endhighlight %}
+
+<br />
+
+### Templ4docx
+
+Given these results, I've chosen apache-poi library. Unfortunately, this library hasn't any method to find variables in template and replace variables. 
+For this reason I've decided to write utility library to work with templates in docx. The heart of the library is `Template` class which allows you to read docx, find all variables for given pattern, replace variables and save filled template. The example usage of templ4docx is presented below:
+
+{% highlight java %}
+// create new instance of docx template
+DocxTemplate template = new DocxTemplate(); 
+
+// set the variable pattern. In this example the pattern is as follows: #{variableName}
+template.setVariablePattern(new VariablePattern("#{", "}"));  
+
+// path to docx template
+String path = "C://document.docx"; 
+
+// open docx file
+Docx openedTemplate = template.openTemplate(path); 
+
+// read docx content as simple text
+String content = template.readTextContent(openedTemplate); 
+
+// and display it
+System.out.println(content); 
+
+// find all variables satisfying the pattern #{...}
+List<String> findVariables = template.findVariables(openedTemplate); 
+
+// and display it
+for (String var : findVariables) {
+        System.out.println("VARIABLE => " + var);
+}
+
+// prepare map of variables for template
+Map<String, String> variables = new HashMap<String, String>();
+variables.put("#{firstName}", "John");
+variables.put("#{lastName}", "Sky");
+
+// fill template by given map of variables
+Docx filledTemplate = template.fillTemplate(path, variables); 
+
+// save filled document
+template.save(filledTemplate, "C://filledDocument.docx");
+{% endhighlight %}
+
+### How to start ?
+The recommended way to get started using templ4docx in your project is a dependency management system – the snippet below can be copied and pasted into your build.
+
+{% highlight xml %}
+<dependency>
+    <groupId>pl.jsolve</groupId>
+    <artifactId>templ4docx</artifactId>
+    <version>1.0.0</version>
+</dependency>
+{% endhighlight %}
