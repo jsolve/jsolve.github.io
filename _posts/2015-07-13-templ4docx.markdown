@@ -6,19 +6,6 @@ categories: java
 tags: java templ4docx docx apache-poi
 author: Łukasz Stypka
 ---
-<style>
-table{
-    border-collapse: collapse;
-    border-spacing: 0;
-    border:2px solid #000000;
-	text-align: center;
-}
-
-td{
-    border:1px solid #000000;
-	min-width: 200px;
-}
-</style>
 A few days ago, I had to prepare Proof-of-Concept connected with filling templates prepared in docx. I took into account two libraries: org.docx4j and apache-poi. After a short play with them, the second library appears to be more suitable in my case. In order to compare these two libraries I've prepared two classes that perform the same operations: 
 
 + reading docx file
@@ -172,3 +159,16 @@ The recommended way to get started using templ4docx in your project is a depende
     <version>1.0.0</version>
 </dependency>
 {% endhighlight %}
+<style>
+table{
+    border-collapse: collapse;
+    border-spacing: 0;
+    border:2px solid #000000;
+	text-align: center;
+}
+
+td{
+    border:1px solid #000000;
+	min-width: 200px;
+}
+</style>
