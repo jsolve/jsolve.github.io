@@ -110,6 +110,20 @@ private List<String> getTagValues(final String str) {
 Given these results, I've chosen apache-poi library. Unfortunately, this library hasn't any method to find variables in template and replace variables. 
 For this reason I've decided to write utility library to work with templates in docx. The heart of the library is `Template` class which allows you to read docx, find all variables for given pattern, replace variables and save filled template. The example usage of templ4docx is presented below:
 
+<div class="alertbox">
+  <h3>Deprecated</h3>
+  <p>The following section concerns the version 1.0.1
+<b>The current version is 2.0.0. </b> Read more about this version:</p>
+<a href="/java/templ4docx-2-0-0-text-variables/">Text Variables</a><br />
+<a href="">Image Variables</a><br />
+<a href="">Bullet list Variables</a><br />
+<a href="">Table Variables</a><br />
+
+</div>
+
+<br /><br />
+
+
 {% highlight java %}
 // create new instance of docx template
 DocxTemplate template = new DocxTemplate(); 
@@ -152,6 +166,7 @@ template.save(filledTemplate, "C://filledDocument.docx");
 ### How to start ?
 The recommended way to get started using templ4docx in your project is a dependency management system – the snippet below can be copied and pasted into your build.
 
+
 {% highlight xml %}
 <dependency>
     <groupId>pl.jsolve</groupId>
@@ -170,5 +185,9 @@ table{
 td{
     border:1px solid #000000;
 	min-width: 200px;
+}
+
+alertbox {
+	background: #FFAAEE;
 }
 </style>
