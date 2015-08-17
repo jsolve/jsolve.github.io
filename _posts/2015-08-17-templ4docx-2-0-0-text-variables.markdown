@@ -32,4 +32,4 @@ docx.save("lstypka.docx");
 {% endhighlight %}
 
 Text variables may be placed anywhere: in a paragraph, table cell, numbered \ bullet list ...
-The important thing is that style of text is preserved. So if you want to crate, for example bolded lastname, just create bolded variable #{lastname}.
+The important thing is that style of text is preserved. So if you want to create, for example bolded lastname, just create bolded variable #{lastname}.
