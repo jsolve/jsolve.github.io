@@ -117,7 +117,10 @@ For this purpose we'll create `SecurityConfig` class which extends `WebSecurityC
 {% highlight java %}
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-	// Beans connected with translating input and output to JSON
+    private final static String AUTHENTICATE_ENDPOINT = "/authenticate";
+
+   
+    // Beans connected with translating input and output to JSON
     @Bean
     AuthenticationFailureHandler authenticationFailureHandler() {
         return new AuthenticationFailureHandler();
@@ -167,7 +170,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 }
 {% endhighlight %}
 
-To discuss the `AuthenticationFailureHandler`, `AuthenticationSuccessHandler` and `CustomUsernamePasswordAuthenticationFilter` we will back in a moment. First, I would like to take a minute to highlight the `AuthService` class. It's simple service class which implements `org.springframework.security.core.userdetails.UserDetailsService` interface. The class is responsible for provide information about user. Example implementation:
+As you can see, there are two overridden configure methods. Inside the first one I have added some filters, handlers, and I have indicated that all request should be protected (authorizeRequests().antMatchers("/**").authenticated()). I've also configured login endpoint as ("/authenticate"). We will back in a moment to discuss the `AuthenticationFailureHandler`, `AuthenticationSuccessHandler` and `CustomUsernamePasswordAuthenticationFilter`. First, I would like to take a minute to highlight the `AuthService` class. It's simple service class which implements `org.springframework.security.core.userdetails.UserDetailsService` interface. The class is responsible for provide information about user. Example implementation:
 {% highlight java %}
 @Service("authService")
 public class AuthService implements UserDetailsService {
@@ -195,7 +198,7 @@ public class AuthService implements UserDetailsService {
 }
 {% endhighlight %}
 
-As you can see, current implementation allows to login users: 'user' and 'admin'. This implementation makes sense only for tests, and production implementation should invoke some repository to get real user details. 
+As you can see, current implementation allows to login users: 'user' and 'admin'. This implementation makes sense only for tests, and production implementation should invoke some repositories to get real user details. 
 
 The key thing that is needed to send credentials as JSON object is writing custom filter which extends `UsernamePasswordAuthenticationFilter`. 
 
@@ -273,7 +276,7 @@ public class AuthenticationFailureHandler extends SimpleUrlAuthenticationFailure
 }
 {% endhighlight %}
 
-In the case of valid credentials, we should return response as a JSON object too. In below example, I return object consists of userNo, username and list of roles. 
+In the case of valid credentials, we should return response as a JSON object too. In the following example, I return object consists of userNo, username and list of roles. 
 {% highlight java %}
 public class AuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
@@ -368,7 +371,7 @@ Result is easy to predict:
 Once we have a session id, we can try invoke `curl http://localhost:8099/time --cookie "SESSION=449b0dce-cad9-4aa5-9b27-8896b20265ae"` once again. This time with success. Unfortunately, when you try to invoke similar endpoint for client2, you will receive "Full authentication is required to access this resource" error. This is understandable, because the security context is not shared. So what should we do to have such an opportunity? We should use redis as  database of session tokens. First of all, you need to install redis on your computer. If you use Windows, you will find appropriate installer here: [https://github.com/MSOpenTech/redis/releases](https://github.com/MSOpenTech/redis/releases)
 Installers for other systems are available here: [http://redis.io/download](http://redis.io/download)
 
-To use Redis in our application we need to add dependency:
+To use Redis in our application we need to add dependency to security-config pom.xml:
 {% highlight xml %}
 <dependency>
     <groupId>org.springframework.session</groupId>
