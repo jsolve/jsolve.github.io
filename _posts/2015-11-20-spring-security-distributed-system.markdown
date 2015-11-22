@@ -368,7 +368,7 @@ Result is easy to predict:
 {"userNo":1,"username":"admin","roles":["ROLE_ADMIN"]}
 {% endhighlight %}
 
-Once we have a session id, we can try invoke `curl http://localhost:8099/time --cookie "SESSION=449b0dce-cad9-4aa5-9b27-8896b20265ae"` once again. This time with success. Unfortunately, when you try to invoke similar endpoint for client2, you will receive "Full authentication is required to access this resource" error. This is understandable, because the security context is not shared. So what should we do to have such an opportunity? We should use redis as  database of session tokens. First of all, you need to install redis on your computer. If you use Windows, you will find appropriate installer here: [https://github.com/MSOpenTech/redis/releases](https://github.com/MSOpenTech/redis/releases)
+Once we have a session token, we can try invoke `curl http://localhost:8099/time --cookie "SESSION=449b0dce-cad9-4aa5-9b27-8896b20265ae"` once again. This time with success. Unfortunately, when you try to invoke similar endpoint for client2, you will receive "Full authentication is required to access this resource" error. This is understandable, because the security context is not shared. So what should we do to have such an opportunity? We should use redis as  database of session tokens. First of all, you need to install redis on your computer. If you use Windows, you will find appropriate installer here: [https://github.com/MSOpenTech/redis/releases](https://github.com/MSOpenTech/redis/releases)
 Installers for other systems are available here: [http://redis.io/download](http://redis.io/download)
 
 To use Redis in our application we need to add dependency to security-config pom.xml:
