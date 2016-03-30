@@ -8,7 +8,7 @@ author: Łukasz Stypka
 ---
 In this post I would like to spend some time on Table Variables. The TableVariable is perfect solution when you have n-records of the same variable. Lets consider the following case: we have docx document with table which consists of four columns: Name, Age, Image and list of languages. Our goal is fill the table with students' data. For this purpose I've created the following docx template:
 
-![Docx template]({{ site.url }}/assets/2016-03-30/template.png)
+![Table Template]({{ site.url }}/assets/2016-03-30/template.png)
 
 Now, I have to write some code responsible for filling the table:
 
@@ -90,4 +90,4 @@ Algorithm method:
 {% endhighlight %}
 As you can notice, I've created one table variable consists of four lists of variables. The first one contains two rows with student's name, the second one contains age, third one contains image and the last one list of languages. Of course BulletListVariable can contains both TextVariable and ImageVariable. The completed document is as follows:
 
-![Docx template]({{ site.url }}/assets/2016-03-30/filled.png)
+![Filled Template]({{ site.url }}/assets/2016-03-30/filled.png)
