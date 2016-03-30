@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Spring Boot Security in distributed system"
+title:  "Spring Boot - Security in distributed system"
 date:   2015-11-20 14:03
 categories: java
 tags: java spring spring-boot spring-security redis distributed-system
