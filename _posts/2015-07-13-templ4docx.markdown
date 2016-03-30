@@ -115,9 +115,9 @@ For this reason I've decided to write utility library to work with templates in 
   <p>The following section concerns the version 1.0.1
 <b>The current version is 2.0.0. </b> Read more about this version:</p>
 <a href="/java/templ4docx-2-0-0-text-variables/">Text Variables</a><br />
-<a href="">Image Variables</a><br />
+<a href="/java/templ4docx-2-0-0-image-variables">Image Variables</a><br />
 <a href="">Bullet list Variables</a><br />
-<a href="">Table Variables</a><br />
+<a href="/java/templ4docx-2-0-0-table-variables/">Table Variables</a><br />
 
 </div>
 
