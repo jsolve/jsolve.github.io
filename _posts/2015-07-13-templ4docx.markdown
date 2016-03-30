@@ -147,7 +147,7 @@ for (String var : findVariables) {
 
 // prepare map of variables for template
 Variables var = new Variables();
-var.addTextVariable(new TextVariable("${name}", "Lukasz"));
+var.addTextVariable(new TextVariable("#{name}", "Lukasz"));
 
 // fill template by given map of variables
 docx.fillTemplate(var);
