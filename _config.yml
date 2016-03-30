@@ -9,7 +9,7 @@ url: "http://jsolve.github.io"
 twitter_username: jsolve
 github_username:  jsolve
 permalink: /:categories/:title/
-paginate: 20
+paginate: 5
 
 # Build settings
 markdown: kramdown
